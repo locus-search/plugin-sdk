@@ -10,6 +10,41 @@ A `DataSource` represents any external API or service that can provide:
 
 Common examples include Stack Exchange, Wikipedia, YouTube, or custom knowledge bases.
 
+## Contributing Data Sources
+
+The official implementations of this SDK are maintained in the [`datasource-implementations`](https://github.com/locus-search/datasource-implementations) repository, which contains data sources used in the private Locus core software.
+
+### Creating a New Data Source
+
+If you wish to contribute a new data source to Locus:
+
+1. **Start with the template**: Use the [`datasource-template`](https://github.com/locus-search/datasource-template) repository to create your implementation
+2. **Build your integration**: Implement the `DataSource` interface following best practices (see below)
+3. **Submit for review**: Open a pull request on the [`datasource-implementations`](https://github.com/locus-search/datasource-implementations) repository
+
+### Acceptance Criteria
+
+Your implementation must meet the following requirements:
+
+- **Correctly implements desired behavior**: Accurately fetches topics and data from the target source
+- **Efficient and well-implemented**: Follows Go best practices and performs optimally
+- **Secure**: No vulnerabilities or malicious code
+- **Minimal dependencies**: Uses as few third-party imports as possible (see Security Considerations)
+- **Novel or improved**: Not already implemented, or demonstrably better than existing implementations
+
+Implementations that do not meet these criteria will be rejected.
+
+### Security Considerations
+
+**Important**: Locus is designed to run on-premises at high-stakes enterprise environments. To maintain security and trust:
+
+- **Minimize third-party dependencies**: Use the Go standard library whenever possible
+- **Justify external imports**: If you must use third-party packages, provide clear rationale for their necessity
+- **Vet dependencies**: Only use well-maintained, security-audited packages from trusted sources
+- **Avoid unnecessary complexity**: Simpler implementations are easier to audit and maintain
+
+This approach reduces the attack surface and ensures our software can be thoroughly vetted for enterprise deployment.
+
 ## Interface
 
 ```go
